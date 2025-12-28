@@ -1,12 +1,30 @@
-version: "3.1"
+version: "3.9"
 
 services:
-  ena-map-front:
-    build: ./
-    container_name: ena-map-front
-    stdin_open: true
-    volumes:
-      - .:/usr/app
+  ena-map-server-front:
+    container_name: EnaMapServerFront
+    build:
+      context: ./ena-map-server-front
+      dockerfile: Dockerfile
     ports:
-      - 7767:7767
-    command: npm start
+      - "3005:3005"
+    environment:
+      REACT_APP_STAGE: production
+      PORT: 3005
+    restart: always
+
+  ena-map-server-back:
+    container_name: EnaMapServerBack
+    build:
+      context: ./ena-map-server-back
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      REACT_APP_STAGE: production
+      DATABASE_URL: "mysql://root:cbr90001@host.docker.internal:3306/servidor_mapas"
+      JWT_SECRET: "abcd1234-ab12-ba12-1212-123456789abc"
+      PORT: 8888
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
