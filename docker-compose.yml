@@ -29,12 +29,12 @@ services:
       PORT: 8888
     networks:
       mapserver:
-        ipv4_address: 172.21.0.20  # IP fixo
+        ipv4_address: 172.22.0.20  # IP fixo
     restart: always
 networks:
   mapserver:   # Network renomeada
     driver: bridge
     ipam:
       config:
-        - subnet: 172.21.0.0/24
-          gateway: 172.21.0.1
+        - subnet: 172.22.0.0/24
+          gateway: 172.22.0.1
