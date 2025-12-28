@@ -1,15 +1,28 @@
-FROM node:14-alpine
+# --- STAGE 1: Build stage ---
+FROM node:lts-alpine AS build
+WORKDIR /app
 
-WORKDIR /usr/app
+# Copy package.json and install dependencies
+COPY package*.json ./
+# Use 'npm ci' for production builds for deterministic installs
+RUN npm ci --production
 
-COPY package.json ./
+# Copy the rest of the application code
+COPY . .
 
-RUN npm install 
+# Run your production build command (if any, e.g., 'npm run build')
+# For a simple Node app, this might just be the dependency install
+# RUN npm run build
 
-COPY ./ .
+# --- STAGE 2: Production stage (using a minimal base) ---
+FROM node:lts-alpine
+WORKDIR /ena-map-server-front
 
-RUN npm run build
+# Copy only the necessary files from the build stage
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app .
 
-EXPOSE 7767
+EXPOSE 3005
 
-CMD ["npm","build"]
+# The production start command
+CMD ["npm", "start"]
