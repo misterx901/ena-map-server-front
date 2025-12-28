@@ -9,7 +9,7 @@ export const ENA_CONVERT_SERVER_URL = "http://localhost:7779";
 
 export const getBackgroundLink = (bgName: string) => {
   if (process.env.REACT_APP_STAGE === "production") {
-    return `http://localhost:8888/image/${bgName}.png`;
+    return `/image/${bgName}.png`;
   }
   return `http://localhost:8888/image/${bgName}.png`;
 };
