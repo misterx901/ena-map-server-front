@@ -12,9 +12,11 @@ RUN npm run build
 FROM node:lts-alpine
 WORKDIR /ena-map-server-front
 
-COPY --from=build /app/node_modules ./node_modules
+# Instala apenas o server estático
+RUN npm install -g serve
+
 COPY --from=build /app/build ./build
-COPY --from=build /app/package*.json ./
 
 EXPOSE 3005
-CMD ["npm", "start"]
+
+CMD ["serve", "-s", "build", "-l", "3005"]
