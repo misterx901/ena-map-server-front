@@ -1,6 +1,6 @@
 let apiUrl =
   process.env.REACT_APP_STAGE === "production"
-    ? "http://localhost:8888/v1"
+    ? "/v1"
     : "http://localhost:8888/v1";
 
 export const API_URL = apiUrl;
