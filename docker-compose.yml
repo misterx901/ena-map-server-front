@@ -11,6 +11,8 @@ services:
     environment:
       REACT_APP_STAGE: production
       PORT: 3005
+    networks:
+     - mapserver
     restart: always
 
   ena-map-server-back:
@@ -25,6 +27,14 @@ services:
       DATABASE_URL: "mysql://root:cbr90001@host.docker.internal:3306/servidor_mapas"
       JWT_SECRET: "abcd1234-ab12-ba12-1212-123456789abc"
       PORT: 8888
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    networks:
+      mapserver:
+        ipv4_address: 172.21.0.20  # IP fixo
     restart: always
+networks:
+  mapserver:   # Network renomeada
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/24
+          gateway: 172.21.0.1
