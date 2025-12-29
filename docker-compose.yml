@@ -27,6 +27,11 @@ services:
       DATABASE_URL: "mysql://admin:cbr90001@172.22.0.1:3306/servidor_mapas"
       JWT_SECRET: "abcd1234-ab12-ba12-1212-123456789abc"
       PORT: 8888
+    volumes:
+      - ./ena-map-server-back/assets/img:/ena-map-server-back/assets/img
+      - ./ena-map-server-back/assets/xml:/ena-map-server-back/assets/xml
+      - ./ena-map-server-back/assets/maps:/ena-map-server-back/assets/maps
+      - ./ena-map-server-back/assets/thumbs:/ena-map-server-back/assets/thumbs
     networks:
       mapserver:
         ipv4_address: 172.22.0.20  # IP fixo
