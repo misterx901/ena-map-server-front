@@ -2,7 +2,7 @@
   "name": "frontend-react-typescriopt",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://localhost:8888/",
+  "homepage": "",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -35,9 +35,9 @@
     "typescript": "^4.7.4",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
+ "scripts": {
     "start": "react-scripts start",
-    "build": "REACT_APP_STAGE=production react-scripts build && pm2 serve build 7767 -spa",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
