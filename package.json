@@ -2,7 +2,7 @@
   "name": "frontend-react-typescriopt",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/mapserver",
+  "homepage": "http://localhost:8888/",
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
