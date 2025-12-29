@@ -6,10 +6,12 @@ services:
     build:
       context: ./ena-map-server-front
       dockerfile: Dockerfile
+      args:
+        REACT_APP_STAGE: dev # "production "se for servidor cefet
+        REACT_APP_HOMEPAGE: http://localhost:8888/ #"/mapserver" se for servidor cefet
     ports:
       - "3005:3005"
     environment:
-      REACT_APP_STAGE: production
       PORT: 3005
     networks:
      - mapserver
@@ -23,7 +25,6 @@ services:
     ports:
       - "8888:8888"
     environment:
-      REACT_APP_STAGE: production
       DATABASE_URL: "mysql://admin:cbr90001@172.22.0.1:3306/servidor_mapas"
       JWT_SECRET: "abcd1234-ab12-ba12-1212-123456789abc"
       PORT: 8888
